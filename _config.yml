@@ -1,0 +1,8 @@
+# Site settings
+title: AI-RPG
+author:
+  name: Ben
+description: "A text based AI RPG"
+
+# Build settings
+remote_theme: jekyll/minima
