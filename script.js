@@ -21,7 +21,7 @@ myGame.variable('inventory', 'inventory; has a list of items that the user has c
   '',
 ])
 
-myGame.variable('health', 'how much health the user has, ranges from 100 to 0, when you reach zero it is game over', 100)
+myGame.variable('health', 'how much health the user has, ranges from 100 to 0 and cannot go negative, when you reach zero it is game over and you can choose to restart from the begining or from the last point that makes sense', 100)
 myGame.variable('energy', 'how much energy the user has, ranges from 100 to 0, goes down slowly, gets higher when you eat, when you reach zero you lose health slowly', 100)
 myGame.variable('sleep', 'how much sleep the user has, ranges from 100 to 0, goes down slowly and you gain more if you sleep at night and in a confortable spot, when you reach zero you lose health slowly', 100)
 myGame.variable('hydration', 'if the user is hydrated, ranges from 100 to 0, goes up a little with certain foods and up a lot with clean water, goes down very slowly, when you reach zero you lose health at a moderate pace', 100)
@@ -36,5 +36,9 @@ myGame.botAction('respond', 'Send a text response to the user', { message: 'What
   document.getElementById('sleep').innerHTML = data.currentVariables.sleep.value
   document.getElementById('hydration').innerHTML = data.currentVariables.hydration.value
 
-  document.body.style.backgroundColor = `rgba(255, ${data.currentVariables.health.value * 2.55}, ${data.currentVariables.health.value * 2.55}, 50)`
+  if (data.currentVariables.health.value < 70) {
+    document.body.style.backgroundColor = `rgba(255, ${data.currentVariables.health.value*2.55}, ${data.currentVariables.health.value*2.55}, 10)`
+  } else {
+    document.body.style.backgroundColor = `rgba(255, 255, 255, 0)`
+  }
 })
